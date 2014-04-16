@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Ibags.API.Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="IbagAPIModelStoreContainer">
+          <EntitySet Name="ed_news" EntityType="Ibags.API.Model.Store.ed_news" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ed_order" EntityType="Ibags.API.Model.Store.ed_order" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ed_user" EntityType="Ibags.API.Model.Store.ed_user" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="ed_news">
+          <Key>
+            <PropertyRef Name="eds_id" />
+          </Key>
+          <Property Name="eds_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="cat_id" Type="int" />
+          <Property Name="eds_order" Type="int" />
+          <Property Name="eds_snum" Type="nvarchar" MaxLength="50" />
+          <Property Name="eds_title" Type="nvarchar" MaxLength="200" />
+          <Property Name="eds_intro" Type="ntext" />
+          <Property Name="eds_content" Type="ntext" />
+          <Property Name="eds_count" Type="int" />
+          <Property Name="eds_date" Type="datetime" />
+          <Property Name="eds_year" Type="nvarchar" MaxLength="4" />
+        </EntityType>
+        <EntityType Name="ed_order">
+          <Key>
+            <PropertyRef Name="eds_id" />
+          </Key>
+          <Property Name="eds_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="eds_unum" Type="nvarchar" MaxLength="50" />
+          <Property Name="eds_haoma" Type="nvarchar" MaxLength="20" />
+          <Property Name="eds_sjren" Type="nvarchar" MaxLength="50" />
+          <Property Name="eds_sjsex" Type="nvarchar" MaxLength="10" />
+          <Property Name="eds_sjmobile" Type="nvarchar" MaxLength="50" />
+          <Property Name="eds_sjcity" Type="nvarchar" MaxLength="50" />
+          <Property Name="eds_sjaddr" Type="nvarchar" MaxLength="255" />
+          <Property Name="eds_fcode" Type="nvarchar" MaxLength="50" />
+          <Property Name="eds_genre" Type="int" />
+          <Property Name="eds_airport" Type="nvarchar" MaxLength="100" />
+          <Property Name="eds_date" Type="smalldatetime" />
+          <Property Name="eds_hour" Type="nvarchar" MaxLength="10" />
+          <Property Name="eds_min" Type="nvarchar" MaxLength="10" />
+          <Property Name="eds_normal" Type="int" />
+          <Property Name="eds_special" Type="int" />
+          <Property Name="eds_mileage" Type="float" />
+          <Property Name="eds_price" Type="money" />
+          <Property Name="eds_content" Type="ntext" />
+          <Property Name="eds_status" Type="int" />
+          <Property Name="eds_zhifu" Type="int" />
+          <Property Name="eds_xd" Type="datetime" />
+          <Property Name="eds_wc" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ed_user">
+          <Key>
+            <PropertyRef Name="eds_id" />
+          </Key>
+          <Property Name="eds_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="eds_unum" Type="nvarchar" MaxLength="20" />
+          <Property Name="eds_mima" Type="nvarchar" MaxLength="50" />
+          <Property Name="eds_nick" Type="nvarchar" MaxLength="20" />
+          <Property Name="eds_mail" Type="nvarchar" MaxLength="200" />
+          <Property Name="eds_name" Type="nvarchar" MaxLength="30" />
+          <Property Name="eds_xs" Type="nvarchar" MaxLength="20" />
+          <Property Name="eds_sex" Type="int" />
+          <Property Name="eds_country" Type="int" />
+          <Property Name="eds_addr" Type="nvarchar" MaxLength="255" />
+          <Property Name="eds_mobile" Type="nvarchar" MaxLength="50" />
+          <Property Name="eds_zip" Type="nvarchar" MaxLength="50" />
+          <Property Name="eds_grade" Type="int" />
+          <Property Name="eds_price" Type="money" />
+          <Property Name="eds_total" Type="money" />
+          <Property Name="eds_rdate" Type="datetime" />
+          <Property Name="eds_ip" Type="nvarchar" MaxLength="15" />
+          <Property Name="eds_times" Type="int" />
+          <Property Name="eds_ldate" Type="datetime" />
+          <Property Name="eds_lock" Type="int" />
+          <Property Name="eds_brith" Type="datetime" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Ibags.API.Models" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="IbagsDbContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ed_news" EntityType="Ibags.API.Models.News" />
+          <EntitySet Name="ed_order" EntityType="Ibags.API.Models.Order" />
+          <EntitySet Name="ed_user" EntityType="Ibags.API.Models.Account" />
+        </EntityContainer>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="NewsId" />
+          </Key>
+          <Property Name="NewsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="Order" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Intro" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Date" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="OrderNo" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="FullName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Sex" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="MobileNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="FlightNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Direction" Type="Int32" />
+          <Property Name="Airport" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="PlanDate" Type="DateTime" />
+          <Property Name="PlanHour" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="PlanMinute" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="PackageCount" Type="Int32" />
+          <Property Name="SpecialPackageCount" Type="Int32" />
+          <Property Name="Mileage" Type="Double" />
+          <Property Name="Fee" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Remark" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="OrderStatus" Type="Int32" />
+          <Property Name="PaymentChannel" Type="Int32" />
+          <Property Name="OrderTime" Type="DateTime" />
+          <Property Name="CompleteTime" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="AccountId" />
+          </Key>
+          <Property Name="AccountId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountNo" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="NickName" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="FullName" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="Sex" Type="Int32" />
+          <Property Name="Country" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="MobileNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Zipcode" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Grade" Type="Int32" />
+          <Property Name="RegisterDate" Type="DateTime" />
+          <Property Name="LastLoginIP" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="LoginCount" Type="Int32" />
+          <Property Name="LastLoginTime" Type="DateTime" />
+          <Property Name="AccountStatus" Type="Int32" />
+          <Property Name="Birthdate" Type="DateTime" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IbagAPIModelStoreContainer" CdmEntityContainer="IbagsDbContext">
+          <EntitySetMapping Name="ed_news"><EntityTypeMapping TypeName="Ibags.API.Models.News"><MappingFragment StoreEntitySet="ed_news">
+                <ScalarProperty Name="NewsId" ColumnName="eds_id" />
+                <ScalarProperty Name="CategoryId" ColumnName="cat_id" />
+            <ScalarProperty Name="Order" ColumnName="eds_order" />
+            <ScalarProperty Name="Title" ColumnName="eds_title" />
+            <ScalarProperty Name="Intro" ColumnName="eds_intro" />
+            <ScalarProperty Name="Content" ColumnName="eds_content" />
+            <ScalarProperty Name="Date" ColumnName="eds_date" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ed_order"><EntityTypeMapping TypeName="Ibags.API.Models.Order"><MappingFragment StoreEntitySet="ed_order">
+            <ScalarProperty Name="OrderId" ColumnName="eds_id" />
+            <ScalarProperty Name="AccountNo" ColumnName="eds_unum" />
+            <ScalarProperty Name="OrderNo" ColumnName="eds_haoma" />
+            <ScalarProperty Name="FullName" ColumnName="eds_sjren" />
+            <ScalarProperty Name="Sex" ColumnName="eds_sjsex" />
+            <ScalarProperty Name="MobileNo" ColumnName="eds_sjmobile" />
+            <ScalarProperty Name="City" ColumnName="eds_sjcity" />
+            <ScalarProperty Name="Address" ColumnName="eds_sjaddr" />
+            <ScalarProperty Name="FlightNo" ColumnName="eds_fcode" />
+            <ScalarProperty Name="Direction" ColumnName="eds_genre" />
+            <ScalarProperty Name="Airport" ColumnName="eds_airport" />
+            <ScalarProperty Name="PlanDate" ColumnName="eds_date" />
+            <ScalarProperty Name="PlanHour" ColumnName="eds_hour" />
+            <ScalarProperty Name="PlanMinute" ColumnName="eds_min" />
+            <ScalarProperty Name="PackageCount" ColumnName="eds_normal" />
+            <ScalarProperty Name="SpecialPackageCount" ColumnName="eds_special" />
+            <ScalarProperty Name="Mileage" ColumnName="eds_mileage" />
+            <ScalarProperty Name="Fee" ColumnName="eds_price" />
+            <ScalarProperty Name="Remark" ColumnName="eds_content" />
+            <ScalarProperty Name="OrderStatus" ColumnName="eds_status" />
+            <ScalarProperty Name="PaymentChannel" ColumnName="eds_zhifu" />
+            <ScalarProperty Name="OrderTime" ColumnName="eds_xd" />
+            <ScalarProperty Name="CompleteTime" ColumnName="eds_wc" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ed_user"><EntityTypeMapping TypeName="Ibags.API.Models.Account"><MappingFragment StoreEntitySet="ed_user">
+            <ScalarProperty Name="AccountId" ColumnName="eds_id" />
+            <ScalarProperty Name="AccountNo" ColumnName="eds_unum" />
+            <ScalarProperty Name="Password" ColumnName="eds_mima" />
+            <ScalarProperty Name="NickName" ColumnName="eds_nick" />
+            <ScalarProperty Name="Email" ColumnName="eds_mail" />
+            <ScalarProperty Name="FullName" ColumnName="eds_name" />
+            <ScalarProperty Name="Sex" ColumnName="eds_sex" />
+            <ScalarProperty Name="Country" ColumnName="eds_country" />
+            <ScalarProperty Name="Address" ColumnName="eds_addr" />
+            <ScalarProperty Name="MobileNo" ColumnName="eds_mobile" />
+            <ScalarProperty Name="Zipcode" ColumnName="eds_zip" />
+            <ScalarProperty Name="Grade" ColumnName="eds_grade" />
+            <ScalarProperty Name="RegisterDate" ColumnName="eds_rdate" />
+            <ScalarProperty Name="LastLoginIP" ColumnName="eds_ip" />
+            <ScalarProperty Name="LoginCount" ColumnName="eds_times" />
+            <ScalarProperty Name="LastLoginTime" ColumnName="eds_ldate" />
+            <ScalarProperty Name="AccountStatus" ColumnName="eds_lock" />
+            <ScalarProperty Name="Birthdate" ColumnName="eds_brith" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="IbagDb">
+        <EntityTypeShape EntityType="Ibags.API.Models.News" Width="1.5" PointX="0.75" PointY="0.75" Height="2.128072916666667" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ibags.API.Models.Order" Width="1.5" PointX="2.75" PointY="0.75" Height="4.8259895833333326" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ibags.API.Models.Account" Width="1.5" PointX="4.75" PointY="0.75" Height="3.9828906249999996" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
