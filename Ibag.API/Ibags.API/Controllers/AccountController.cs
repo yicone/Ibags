@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace Ibags.API.Controllers
 {
@@ -16,12 +17,18 @@ namespace Ibags.API.Controllers
         private IbagsDbContext db = new IbagsDbContext();
 
         // GET api/Account
+        [ApiExplorerSettings(IgnoreApi = true)]
         public IEnumerable<Account> GetAccounts()
         {
             return db.ed_user.AsEnumerable();
         }
 
         // GET api/Account/5
+        /// <summary>
+        /// 获取帐号信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Account GetAccount(int id)
         {
             Account account = db.ed_user.Find(id);
