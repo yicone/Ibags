@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace Ibags.API.Controllers
 {
@@ -16,12 +17,21 @@ namespace Ibags.API.Controllers
         private IbagsDbContext db = new IbagsDbContext();
 
         // GET api/News
+        /// <summary>
+        /// 获取新闻列表
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<News> GetNews()
         {
             return db.ed_news.AsEnumerable();
         }
 
         // GET api/News/5
+        /// <summary>
+        /// 获取新闻详情
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public News GetNews(int id)
         {
             News news = db.ed_news.Find(id);
@@ -34,6 +44,7 @@ namespace Ibags.API.Controllers
         }
 
         // PUT api/News/5
+        [ApiExplorerSettings(IgnoreApi = true)]
         public HttpResponseMessage PutNews(int id, News news)
         {
             if (ModelState.IsValid && id == news.NewsId)
@@ -58,6 +69,7 @@ namespace Ibags.API.Controllers
         }
 
         // POST api/News
+        [ApiExplorerSettings(IgnoreApi = true)]
         public HttpResponseMessage PostNews(News news)
         {
             if (ModelState.IsValid)
@@ -76,6 +88,7 @@ namespace Ibags.API.Controllers
         }
 
         // DELETE api/News/5
+        [ApiExplorerSettings(IgnoreApi = true)]
         public HttpResponseMessage DeleteNews(int id)
         {
             News news = db.ed_news.Find(id);

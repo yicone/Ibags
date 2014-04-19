@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace Ibags.API.Controllers
 {
@@ -16,12 +17,22 @@ namespace Ibags.API.Controllers
         private IbagsDbContext db = new IbagsDbContext();
 
         // GET api/Order
-        public IEnumerable<Order> GetOrders()
+        /// <summary>
+        /// 获取订单列表
+        /// </summary>
+        /// <param name="accountNo"></param>
+        /// <returns></returns>
+        public IEnumerable<Order> GetOrders(string userNo)
         {
-            return db.ed_order.AsEnumerable();
+            return db.ed_order.Where(o => o.UserNo == userNo);
         }
 
         // GET api/Order/5
+        /// <summary>
+        /// 获取订单详情
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Order GetOrder(int id)
         {
             Order order = db.ed_order.Find(id);
@@ -34,6 +45,12 @@ namespace Ibags.API.Controllers
         }
 
         // PUT api/Order/5
+        /// <summary>
+        /// 修改订单
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="order"></param>
+        /// <returns></returns>
         public HttpResponseMessage PutOrder(int id, Order order)
         {
             if (ModelState.IsValid && id == order.OrderId)
@@ -58,6 +75,11 @@ namespace Ibags.API.Controllers
         }
 
         // POST api/Order
+        /// <summary>
+        /// 新建订单
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns></returns>
         public HttpResponseMessage PostOrder(Order order)
         {
             if (ModelState.IsValid)
@@ -76,6 +98,7 @@ namespace Ibags.API.Controllers
         }
 
         // DELETE api/Order/5
+        [ApiExplorerSettings(IgnoreApi = true)]
         public HttpResponseMessage DeleteOrder(int id)
         {
             Order order = db.ed_order.Find(id);

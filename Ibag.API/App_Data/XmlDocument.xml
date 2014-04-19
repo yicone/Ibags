@@ -4,46 +4,11 @@
         <name>Ibags.API</name>
     </assembly>
     <members>
-        <member name="M:Ibags.API.Controllers.NewsController.GetNews">
+        <member name="M:Ibags.API.Controllers.AccountController.GetAccount(System.Int32)">
             <summary>
-            获取新闻列表
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Ibags.API.Controllers.NewsController.GetNews(System.Int32)">
-            <summary>
-            获取新闻详情
+            获取帐号信息
             </summary>
             <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ibags.API.Controllers.OrderController.GetOrders(System.String)">
-            <summary>
-            获取订单列表
-            </summary>
-            <param name="accountNo"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ibags.API.Controllers.OrderController.GetOrder(System.Int32)">
-            <summary>
-            获取订单详情
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ibags.API.Controllers.OrderController.PutOrder(System.Int32,Ibags.API.Order)">
-            <summary>
-            修改订单
-            </summary>
-            <param name="id"></param>
-            <param name="order"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ibags.API.Controllers.OrderController.PostOrder(Ibags.API.Order)">
-            <summary>
-            新建订单
-            </summary>
-            <param name="order"></param>
             <returns></returns>
         </member>
         <member name="T:Ibags.API.Areas.HelpPage.TextSample">
@@ -437,35 +402,6 @@
             For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
             or you can provide the samples for the requests/responses.
             </summary>
-        </member>
-        <member name="M:Ibags.API.Controllers.UserController.Authenticate(Ibags.API.User)">
-            <summary>
-            验证
-            </summary>
-            <param name="user"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ibags.API.Controllers.UserController.GetUser(System.Int32)">
-            <summary>
-            获取帐号信息
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ibags.API.Controllers.UserController.PutUser(System.Int32,Ibags.API.User)">
-            <summary>
-            修改帐号信息
-            </summary>
-            <param name="id"></param>
-            <param name="user"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ibags.API.Controllers.UserController.PostUser(Ibags.API.User)">
-            <summary>
-            注册帐号
-            </summary>
-            <param name="user"></param>
-            <returns></returns>
         </member>
     </members>
 </doc>
