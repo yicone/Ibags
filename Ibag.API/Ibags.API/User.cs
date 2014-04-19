@@ -11,40 +11,26 @@ namespace Ibags.API
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
-    public partial class Account
+    public partial class User
     {
-        public int AccountId { get; set; }
-        public string AccountNo { get; set; }
-        [Required]
-        [MinLength(6)]
-        [DataType(DataType.Password)]
+        public string UserId { get; set; }
         public string Password { get; set; }
-        [MaxLength(20)]
-        [MinLength(2)]
         public string NickName { get; set; }
-        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        [Required]
-        [MaxLength(20)]
-        [MinLength(2)]
         public string FullName { get; set; }
         public Nullable<int> Sex { get; set; }
         public Nullable<int> Country { get; set; }
-        [MaxLength(50)]
         public string Address { get; set; }
-        [Required]
-        [Key]
         public string MobileNo { get; set; }
         public string Zipcode { get; set; }
         public Nullable<int> Grade { get; set; }
-        
         public Nullable<System.DateTime> RegisterDate { get; set; }
         public string LastLoginIP { get; set; }
         public Nullable<int> LoginCount { get; set; }
         public Nullable<System.DateTime> LastLoginTime { get; set; }
         public Nullable<int> AccountStatus { get; set; }
         public Nullable<System.DateTime> Birthdate { get; set; }
+        public int id { get; set; }
     }
 }

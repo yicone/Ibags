@@ -11,32 +11,22 @@ namespace Ibags.API
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Order
     {
         public int OrderId { get; set; }
-        public string AccountNo { get; set; }
+        public string UserId { get; set; }
         public string OrderNo { get; set; }
-        [Required]
         public string FullName { get; set; }
         public string Sex { get; set; }
-        [Required]
         public string MobileNo { get; set; }
-        [Required]
         public string City { get; set; }
-        [Required]
         public string Address { get; set; }
-        [Required]
         public string FlightNo { get; set; }
         public Nullable<int> Direction { get; set; }
-        [Required]
         public string Airport { get; set; }
-        [Required]
         public Nullable<System.DateTime> PlanDate { get; set; }
-        [Required]
         public string PlanHour { get; set; }
-        [Required]
         public string PlanMinute { get; set; }
         public Nullable<int> PackageCount { get; set; }
         public Nullable<int> SpecialPackageCount { get; set; }

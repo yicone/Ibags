@@ -9,53 +9,51 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Ibags.API.App_Start;
+using Ibags.API.Models;
 
 namespace Ibags.API.Controllers
 {
-    public class OrderController : ApiController
+    public class UserController : ApiController
     {
         private IbagsDbContext db = new IbagsDbContext();
 
-        // GET api/Order
-        /// <summary>
-        /// 获取订单列表
-        /// </summary>
-        /// <param name="accountNo"></param>
-        /// <returns></returns>
-        public IEnumerable<Order> GetOrders(string userId)
+        // GET api/User
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public IEnumerable<User> GetUsers()
         {
-            return db.ed_order.Where(o => o.UserId == userId);
+            return db.ed_user.AsEnumerable();
         }
 
-        // GET api/Order/5
+        // GET api/User/5
         /// <summary>
-        /// 获取订单详情
+        /// 获取帐号信息
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Order GetOrder(int id)
+        public User GetUser(int id)
         {
-            Order order = db.ed_order.Find(id);
-            if (order == null)
+            User user = db.ed_user.Find(id);
+            if (user == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
             }
 
-            return order;
+            return user;
         }
 
-        // PUT api/Order/5
+        // PUT api/User/5
         /// <summary>
-        /// 修改订单
+        /// 修改帐号信息
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="order"></param>
+        /// <param name="user"></param>
         /// <returns></returns>
-        public HttpResponseMessage PutOrder(int id, Order order)
+        public HttpResponseMessage PutUser(String id, User user)
         {
-            if (ModelState.IsValid && id == order.OrderId)
+            if (ModelState.IsValid && id == user.UserId)
             {
-                db.Entry(order).State = EntityState.Modified;
+                db.Entry(user).State = EntityState.Modified;
 
                 try
                 {
@@ -74,21 +72,21 @@ namespace Ibags.API.Controllers
             }
         }
 
-        // POST api/Order
+        // POST api/User
         /// <summary>
-        /// 新建订单
+        /// 注册帐号
         /// </summary>
-        /// <param name="order"></param>
+        /// <param name="user"></param>
         /// <returns></returns>
-        public HttpResponseMessage PostOrder(Order order)
+        public HttpResponseMessage PostUser(User user)
         {
             if (ModelState.IsValid)
             {
-                db.ed_order.Add(order);
+                db.ed_user.Add(user);
                 db.SaveChanges();
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, order);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = order.OrderId }));
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, user);
+                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = user.UserId }));
                 return response;
             }
             else
@@ -97,17 +95,17 @@ namespace Ibags.API.Controllers
             }
         }
 
-        // DELETE api/Order/5
+        // DELETE api/User/5
         [ApiExplorerSettings(IgnoreApi = true)]
-        public HttpResponseMessage DeleteOrder(int id)
+        public HttpResponseMessage DeleteUser(int id)
         {
-            Order order = db.ed_order.Find(id);
-            if (order == null)
+            User user = db.ed_user.Find(id);
+            if (user == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            db.ed_order.Remove(order);
+            db.ed_user.Remove(user);
 
             try
             {
@@ -118,7 +116,7 @@ namespace Ibags.API.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, order);
+            return Request.CreateResponse(HttpStatusCode.OK, user);
         }
 
         protected override void Dispose(bool disposing)

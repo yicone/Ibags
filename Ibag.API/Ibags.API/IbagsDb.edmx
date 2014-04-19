@@ -87,7 +87,7 @@
         <EntityContainer Name="IbagsDbContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ed_news" EntityType="Ibags.API.Models.News" />
           <EntitySet Name="ed_order" EntityType="Ibags.API.Models.Order" />
-          <EntitySet Name="ed_user" EntityType="Ibags.API.Models.Account" />
+          <EntitySet Name="ed_user" EntityType="Ibags.API.Models.User" />
         </EntityContainer>
         <EntityType Name="News">
           <Key>
@@ -106,7 +106,7 @@
             <PropertyRef Name="OrderId" />
           </Key>
           <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AccountNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UserId" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="OrderNo" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
           <Property Name="FullName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Sex" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
@@ -129,12 +129,11 @@
           <Property Name="OrderTime" Type="DateTime" />
           <Property Name="CompleteTime" Type="DateTime" />
         </EntityType>
-        <EntityType Name="Account">
+        <EntityType Name="User">
           <Key>
-            <PropertyRef Name="AccountId" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="AccountId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AccountNo" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="UserId" Type="String" MaxLength="20" Unicode="true" FixedLength="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="NickName" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
           <Property Name="Email" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
@@ -151,6 +150,7 @@
           <Property Name="LastLoginTime" Type="DateTime" />
           <Property Name="AccountStatus" Type="Int32" />
           <Property Name="Birthdate" Type="DateTime" />
+          <Property Type="Int32" Name="id" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -169,7 +169,7 @@
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="ed_order"><EntityTypeMapping TypeName="Ibags.API.Models.Order"><MappingFragment StoreEntitySet="ed_order">
             <ScalarProperty Name="OrderId" ColumnName="eds_id" />
-            <ScalarProperty Name="AccountNo" ColumnName="eds_unum" />
+            <ScalarProperty Name="UserId" ColumnName="eds_unum" />
             <ScalarProperty Name="OrderNo" ColumnName="eds_haoma" />
             <ScalarProperty Name="FullName" ColumnName="eds_sjren" />
             <ScalarProperty Name="Sex" ColumnName="eds_sjsex" />
@@ -192,9 +192,9 @@
             <ScalarProperty Name="OrderTime" ColumnName="eds_xd" />
             <ScalarProperty Name="CompleteTime" ColumnName="eds_wc" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="ed_user"><EntityTypeMapping TypeName="Ibags.API.Models.Account"><MappingFragment StoreEntitySet="ed_user">
-            <ScalarProperty Name="AccountId" ColumnName="eds_id" />
-            <ScalarProperty Name="AccountNo" ColumnName="eds_unum" />
+          <EntitySetMapping Name="ed_user"><EntityTypeMapping TypeName="Ibags.API.Models.User"><MappingFragment StoreEntitySet="ed_user">
+            <ScalarProperty Name="id" ColumnName="eds_id" />
+                <ScalarProperty Name="UserId" ColumnName="eds_unum" />
             <ScalarProperty Name="Password" ColumnName="eds_mima" />
             <ScalarProperty Name="NickName" ColumnName="eds_nick" />
             <ScalarProperty Name="Email" ColumnName="eds_mail" />
@@ -236,7 +236,7 @@
       <Diagram Name="IbagDb">
         <EntityTypeShape EntityType="Ibags.API.Models.News" Width="1.5" PointX="0.75" PointY="0.75" Height="2.128072916666667" IsExpanded="true" />
         <EntityTypeShape EntityType="Ibags.API.Models.Order" Width="1.5" PointX="2.75" PointY="0.75" Height="4.8259895833333326" IsExpanded="true" />
-        <EntityTypeShape EntityType="Ibags.API.Models.Account" Width="1.5" PointX="4.75" PointY="0.75" Height="3.9828906249999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ibags.API.Models.User" Width="1.5" PointX="4.75" PointY="0.75" Height="3.9828906249999996" IsExpanded="true" />
       </Diagram>
     </Diagrams>
   </Designer>

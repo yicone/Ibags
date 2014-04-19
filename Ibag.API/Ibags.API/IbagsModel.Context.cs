@@ -27,6 +27,6 @@ namespace Ibags.API
     
         public DbSet<News> ed_news { get; set; }
         public DbSet<Order> ed_order { get; set; }
-        public DbSet<Account> ed_user { get; set; }
+        public DbSet<User> ed_user { get; set; }
     }
 }
