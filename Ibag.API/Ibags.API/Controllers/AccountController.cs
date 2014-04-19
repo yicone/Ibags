@@ -20,8 +20,8 @@ namespace Ibags.API.Controllers
         {
             //if (String.IsNullOrEmpty(userId))
             //    throw new HttpResponseException(new HttpResponseMessage() { StatusCode = HttpStatusCode.Unauthorized, Content = new StringContent("Please provide the credentials.") });
-
-            bool isValidUser = db.ed_user.Any(u => u.UserId == userId && u.Password == password);
+            var pwd = Extensions.MD5Hash(password);
+            bool isValidUser = db.ed_user.Any(u => u.UserId == userId && u.Password == pwd);
             if (isValidUser)
             {
                 Token token = new Token(userId, Request.GetClientIP());
