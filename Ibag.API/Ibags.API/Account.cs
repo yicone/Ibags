@@ -12,9 +12,9 @@ namespace Ibags.API
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Account
     {
-        public string UserId { get; set; }
+        public string AccountId { get; set; }
         public string Password { get; set; }
         public string NickName { get; set; }
         public string Email { get; set; }
@@ -31,6 +31,6 @@ namespace Ibags.API
         public Nullable<System.DateTime> LastLoginTime { get; set; }
         public Nullable<int> AccountStatus { get; set; }
         public Nullable<System.DateTime> Birthdate { get; set; }
-        public int id { get; set; }
+        public int rowId { get; set; }
     }
 }

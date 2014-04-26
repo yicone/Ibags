@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Dispatcher;
 using Ibags.API.App_Start;
+using System.Web.Http.Routing;
+using System.Net.Http;
 
 namespace Ibags.API
 {
@@ -16,10 +18,31 @@ namespace Ibags.API
 
             //Just exclude the users controllers from need to provide valid token, so they could authenticate
             config.Routes.MapHttpRoute(
-                name: "Authentication",
-                routeTemplate: "api/account/{action}",
-                defaults: new { controller = "account" }
+                name: "News",
+                routeTemplate: "api/news/{id}",
+                defaults: new { id = RouteParameter.Optional },
+                constraints: new { Grendal = new HttpMethodConstraint(HttpMethod.Get) }
             );
+            config.Routes.MapHttpRoute(
+                name: "Token",
+                routeTemplate: "api/token/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
+            config.Routes.MapHttpRoute(
+                name: "Registration",
+                routeTemplate: "api/account/{id}",
+                defaults: new { id = RouteParameter.Optional },
+                constraints: new { Grendal = new HttpMethodConstraint(HttpMethod.Post) }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "Order",
+                routeTemplate: "api/order/{orderNo}",
+                defaults: new { orderNo = RouteParameter.Optional },
+                constraints: null,
+                handler: tokenInspector
+            );
+
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

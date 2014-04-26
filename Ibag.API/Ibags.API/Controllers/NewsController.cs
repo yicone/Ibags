@@ -23,7 +23,7 @@ namespace Ibags.API.Controllers
         /// <returns></returns>
         public IEnumerable<News> GetNews()
         {
-            return db.ed_news.AsEnumerable();
+            return db.NewsSet.AsEnumerable();
         }
 
         // GET api/News/5
@@ -34,7 +34,7 @@ namespace Ibags.API.Controllers
         /// <returns></returns>
         public News GetNews(int id)
         {
-            News news = db.ed_news.Find(id);
+            News news = db.NewsSet.Find(id);
             if (news == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
@@ -74,7 +74,7 @@ namespace Ibags.API.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.ed_news.Add(news);
+                db.NewsSet.Add(news);
                 db.SaveChanges();
 
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, news);
@@ -91,13 +91,13 @@ namespace Ibags.API.Controllers
         [ApiExplorerSettings(IgnoreApi = true)]
         public HttpResponseMessage DeleteNews(int id)
         {
-            News news = db.ed_news.Find(id);
+            News news = db.NewsSet.Find(id);
             if (news == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            db.ed_news.Remove(news);
+            db.NewsSet.Remove(news);
 
             try
             {

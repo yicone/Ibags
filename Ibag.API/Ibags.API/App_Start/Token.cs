@@ -8,13 +8,13 @@ namespace Ibags.API.App_Start
 {
     public class Token
     {
-        public Token(string userId, string fromIP)
+        public Token(string accountId, string fromIP)
         {
-            UserId = userId;
+            AccountId = accountId;
             IP = fromIP;
         }
 
-        public string UserId { get; private set; }
+        public string AccountId { get; private set; }
         public string IP { get; private set; }
 
         public string Encrypt()
@@ -26,7 +26,7 @@ namespace Ibags.API.App_Start
 
         public override string ToString()
         {
-            return String.Format("UserId={0};IP={1}", this.UserId, this.IP);
+            return String.Format("AccountId={0};IP={1}", this.AccountId, this.IP);
         }
 
         public static Token Decrypt(string encryptedToken)
@@ -37,7 +37,7 @@ namespace Ibags.API.App_Start
 
             //Splitting it to dictionary
             Dictionary<string, string> dictionary = decrypted.ToDictionary();
-            return new Token(dictionary["UserId"], dictionary["IP"]);
+            return new Token(dictionary["AccountId"], dictionary["IP"]);
         }
     }
 }

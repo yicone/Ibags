@@ -25,8 +25,8 @@ namespace Ibags.API
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<News> ed_news { get; set; }
-        public DbSet<Order> ed_order { get; set; }
-        public DbSet<User> ed_user { get; set; }
+        public DbSet<News> NewsSet { get; set; }
+        public DbSet<Order> OrderSet { get; set; }
+        public DbSet<Account> AccountSet { get; set; }
     }
 }

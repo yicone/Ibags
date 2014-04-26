@@ -14,8 +14,8 @@ namespace Ibags.API
     
     public partial class Order
     {
-        public int OrderId { get; set; }
-        public string UserId { get; set; }
+        public int rowId { get; set; }
+        public string AccountId { get; set; }
         public string OrderNo { get; set; }
         public string FullName { get; set; }
         public string Sex { get; set; }

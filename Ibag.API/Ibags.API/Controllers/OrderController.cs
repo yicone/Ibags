@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Ibags.API.App_Start;
 
 namespace Ibags.API.Controllers
 {
@@ -20,22 +21,22 @@ namespace Ibags.API.Controllers
         /// <summary>
         /// 获取订单列表
         /// </summary>
-        /// <param name="accountNo"></param>
         /// <returns></returns>
-        public IEnumerable<Order> GetOrders(string userId)
+        public IEnumerable<Order> GetOrders()
         {
-            return db.ed_order.Where(o => o.UserId == userId);
+            String accountId = TokenInspector.GetToken(Request).AccountId;
+            return db.OrderSet.Where(o => o.AccountId == accountId);
         }
 
-        // GET api/Order/5
+        // GET api/Order/XLGJ000001
         /// <summary>
         /// 获取订单详情
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="orderNo">eg. XLGJ000001</param>
         /// <returns></returns>
-        public Order GetOrder(int id)
+        public Order GetOrder(string orderNo)
         {
-            Order order = db.ed_order.Find(id);
+            Order order = db.OrderSet.SingleOrDefault(o => o.OrderNo == orderNo);
             if (order == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
@@ -44,16 +45,16 @@ namespace Ibags.API.Controllers
             return order;
         }
 
-        // PUT api/Order/5
+        // PUT api/Order/XLGJ000001
         /// <summary>
         /// 修改订单
         /// </summary>
         /// <param name="id"></param>
         /// <param name="order"></param>
         /// <returns></returns>
-        public HttpResponseMessage PutOrder(int id, Order order)
+        public HttpResponseMessage PutOrder(string orderNo, Order order)
         {
-            if (ModelState.IsValid && id == order.OrderId)
+            if (ModelState.IsValid && orderNo == order.OrderNo)
             {
                 db.Entry(order).State = EntityState.Modified;
 
@@ -84,11 +85,14 @@ namespace Ibags.API.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.ed_order.Add(order);
-                db.SaveChanges();
+                // validate accountId
+                if (order.AccountId != TokenInspector.GetToken(Request).AccountId)
+                {
+                    return Request.CreateResponse(HttpStatusCode.BadRequest);
+                }
 
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, order);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = order.OrderId }));
+                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { orderNo = order.OrderNo }));
                 return response;
             }
             else
@@ -99,15 +103,15 @@ namespace Ibags.API.Controllers
 
         // DELETE api/Order/5
         [ApiExplorerSettings(IgnoreApi = true)]
-        public HttpResponseMessage DeleteOrder(int id)
+        public HttpResponseMessage DeleteOrder(string orderNo)
         {
-            Order order = db.ed_order.Find(id);
+            Order order = db.OrderSet.SingleOrDefault(o => o.OrderNo == orderNo);
             if (order == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            db.ed_order.Remove(order);
+            db.OrderSet.Remove(order);
 
             try
             {

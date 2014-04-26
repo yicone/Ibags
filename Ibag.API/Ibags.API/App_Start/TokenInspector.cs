@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Net;
 using Ibags.API.App_Start;
+using System.Security.Principal;
 
 namespace Ibags.API.App_Start
 {
     public class TokenInspector : DelegatingHandler
     {
+        const string TOKEN_NAME = "X-Token";
+
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            const string TOKEN_NAME = "X-Token";
-
             if (request.Headers.Contains(TOKEN_NAME))
             {
                 string encryptedToken = request.Headers.GetValues(TOKEN_NAME).First();
@@ -23,7 +24,7 @@ namespace Ibags.API.App_Start
                 {
                     Token token = Token.Decrypt(encryptedToken);
                     IbagsDbContext db = new IbagsDbContext();
-                    bool isValidUserId = db.ed_user.Any(u => u.UserId == token.UserId);
+                    bool isValidUserId = db.AccountSet.Any(u => u.AccountId == token.AccountId);
                     bool requestIPMatchesTokenIP = token.IP.Equals(request.GetClientIP());
 
                     if (!isValidUserId || !requestIPMatchesTokenIP)
@@ -45,6 +46,11 @@ namespace Ibags.API.App_Start
             }
 
             return base.SendAsync(request, cancellationToken);
+        }
+
+        public static Token GetToken(HttpRequestMessage request) {
+            string encryptedToken = request.Headers.GetValues(TOKEN_NAME).First();
+            return Token.Decrypt(encryptedToken);
         }
     }
 }
