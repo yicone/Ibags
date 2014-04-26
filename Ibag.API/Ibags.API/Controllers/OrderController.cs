@@ -91,6 +91,10 @@ namespace Ibags.API.Controllers
                     return Request.CreateResponse(HttpStatusCode.BadRequest);
                 }
 
+                order.OrderNo = MakeOrderNo();
+                db.OrderSet.Add(order);
+                db.SaveChanges();
+
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, order);
                 response.Headers.Location = new Uri(Url.Link("DefaultApi", new { orderNo = order.OrderNo }));
                 return response;
@@ -99,6 +103,14 @@ namespace Ibags.API.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
+        }
+
+        private string MakeOrderNo()
+        {
+            Random r = new Random();
+            var a = r.Next(1000, 9999);
+            var orderNo = a + DateTime.Now.ToString("yyMMddhhmmss");    //140401192504  2014-04-01 19:25:04 3507 140401192504
+            return orderNo;
         }
 
         // DELETE api/Order/5

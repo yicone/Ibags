@@ -53,6 +53,10 @@ namespace Ibags.API.Controllers
             {
                 db.AccountSet.Add(account);
                 db.SaveChanges();
+                // 无奈
+                account.AccountId = "XLGJ" + account.rowId.ToString().PadLeft(6, '0');
+                db.Entry(account).State = EntityState.Modified;
+                db.SaveChanges();
 
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, account);
                 response.Headers.Location = new Uri(Url.Link("Registration", new { id = account.AccountId }));
