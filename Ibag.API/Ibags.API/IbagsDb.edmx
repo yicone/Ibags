@@ -4,8 +4,8 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Ibags.API.Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityContainer Name="IbagAPIModelStoreContainer">
+    <Schema Namespace="Ibags.API.Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="IbagsAPIModelStoreContainer">
           <EntitySet Name="ed_news" EntityType="Ibags.API.Model.Store.ed_news" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ed_order" EntityType="Ibags.API.Model.Store.ed_order" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ed_user" EntityType="Ibags.API.Model.Store.ed_user" store:Type="Tables" Schema="dbo" />
@@ -79,8 +79,7 @@
           <Property Name="eds_lock" Type="int" />
           <Property Name="eds_brith" Type="datetime" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Ibags.API.Models" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -157,7 +156,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="IbagAPIModelStoreContainer" CdmEntityContainer="IbagsDbContext">
+        <EntityContainerMapping StorageEntityContainer="IbagsAPIModelStoreContainer" CdmEntityContainer="IbagsDbContext">
           <EntitySetMapping Name="NewsSet"><EntityTypeMapping TypeName="Ibags.API.Models.News"><MappingFragment StoreEntitySet="ed_news">
                 <ScalarProperty Name="NewsId" ColumnName="eds_id" />
                 <ScalarProperty Name="CategoryId" ColumnName="cat_id" />

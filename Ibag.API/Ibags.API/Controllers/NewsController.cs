@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Ibags.API.App_Start;
 
 namespace Ibags.API.Controllers
 {
@@ -23,7 +24,10 @@ namespace Ibags.API.Controllers
         /// <returns></returns>
         public IEnumerable<News> GetNews()
         {
-            return db.NewsSet.AsEnumerable();
+            Logger.Instance().Info("getNews");
+            var newsSet = db.NewsSet.AsEnumerable();
+            Logger.Instance().Info("getNews count: " + newsSet.Count());
+            return newsSet;
         }
 
         // GET api/News/5

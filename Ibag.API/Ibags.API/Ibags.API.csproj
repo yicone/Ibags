@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -128,7 +131,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\CryptographyHelper.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\GlobalExceptionFilterAttribute.cs" />
     <Compile Include="App_Start\HTTPSGuard.cs" />
+    <Compile Include="App_Start\Logger.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Extensions.cs" />
     <Compile Include="App_Start\Token.cs" />
@@ -321,6 +326,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>IbagsModel.cs</LastGenOutput>
     </None>
+    <Content Include="log4net.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

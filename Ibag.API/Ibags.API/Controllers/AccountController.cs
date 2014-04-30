@@ -18,12 +18,12 @@ namespace Ibags.API.Controllers
     {
         private IbagsDbContext db = new IbagsDbContext();
 
-        // GET api/Account
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public IEnumerable<Account> GetAccounts()
-        {
-            return db.AccountSet.AsEnumerable();
-        }
+        //// GET api/Account
+        //[ApiExplorerSettings(IgnoreApi = true)]
+        //public IEnumerable<Account> GetAccounts()
+        //{
+        //    return db.AccountSet.AsEnumerable();
+        //}
 
         // GET api/Account/
         /// <summary>
@@ -32,7 +32,8 @@ namespace Ibags.API.Controllers
         /// <returns></returns>
         public Account GetAccount()
         {
-            Account account = db.AccountSet.SingleOrDefault(u => u.AccountId == TokenInspector.GetToken(Request).AccountId);
+            string acccountId = TokenInspector.GetToken(Request).AccountId;
+            Account account = db.AccountSet.SingleOrDefault(u => u.AccountId == acccountId);
             if (account == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));

@@ -23,6 +23,7 @@ namespace Ibags.API.App_Start
                 try
                 {
                     Token token = Token.Decrypt(encryptedToken);
+                    Logger.Instance().InfoFormat("TokenInspector. accountId: {0}, IP: {1}", token.AccountId, token.IP);
                     IbagsDbContext db = new IbagsDbContext();
                     bool isValidUserId = db.AccountSet.Any(u => u.AccountId == token.AccountId);
                     bool requestIPMatchesTokenIP = token.IP.Equals(request.GetClientIP());
@@ -35,6 +36,7 @@ namespace Ibags.API.App_Start
                 }
                 catch (Exception ex)
                 {
+                    Logger.Instance().Error(ex);
                     HttpResponseMessage reply = request.CreateErrorResponse(HttpStatusCode.Unauthorized, "Invalid token.");
                     return Extensions.FromResult(reply);
                 }

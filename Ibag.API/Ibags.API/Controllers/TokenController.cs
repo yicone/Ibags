@@ -21,7 +21,7 @@ namespace Ibags.API.Controllers
         /// <param name="mobileNo"></param>
         /// <param name="password">客户端MD5后的结果</param>
         /// <returns></returns>
-        public Token GetToken(string mobileNo, String password)
+        public string GetToken(string mobileNo, string password)
         {
             //if (String.IsNullOrEmpty(userId))
             //    throw new HttpResponseException(new HttpResponseMessage() { StatusCode = HttpStatusCode.Unauthorized, Content = new StringContent("Please provide the credentials.") });
@@ -30,7 +30,7 @@ namespace Ibags.API.Controllers
             if (user != null)
             {
                 Token token = new Token(user.AccountId, Request.GetClientIP());
-                return token;
+                return token.Encrypt();
             }
             else
             {

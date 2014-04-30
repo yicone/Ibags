@@ -6,6 +6,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using log4net;
+using Ibags.API.App_Start;
 
 namespace Ibags.API
 {
@@ -22,6 +24,9 @@ namespace Ibags.API
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Logger.Instance().Info("Application_Start");
+            Logger.Instance().Error("logger test");
         }
     }
 }

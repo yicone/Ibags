@@ -13,6 +13,8 @@ namespace Ibags.API
     {
         public static void Register(HttpConfiguration config)
         {
+            config.Filters.Add(new GlobalExceptionFilterAttribute());
+
             //Create and instance of TokenInspector setting the default inner handler
             TokenInspector tokenInspector = new TokenInspector() { InnerHandler = new HttpControllerDispatcher(config) };
 
@@ -20,25 +22,24 @@ namespace Ibags.API
             config.Routes.MapHttpRoute(
                 name: "News",
                 routeTemplate: "api/news/{id}",
-                defaults: new { id = RouteParameter.Optional },
-                constraints: new { Grendal = new HttpMethodConstraint(HttpMethod.Get) }
+                defaults: new { controller = "News", id = RouteParameter.Optional }
             );
             config.Routes.MapHttpRoute(
                 name: "Token",
-                routeTemplate: "api/token/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                routeTemplate: "api/token/{mobileNo}/{password}",
+                defaults: new { controller = "Token" }
             );
             config.Routes.MapHttpRoute(
                 name: "Registration",
                 routeTemplate: "api/account/{id}",
-                defaults: new { id = RouteParameter.Optional },
+                defaults: new { controller = "Account", id = RouteParameter.Optional },
                 constraints: new { Grendal = new HttpMethodConstraint(HttpMethod.Post) }
             );
 
             config.Routes.MapHttpRoute(
                 name: "Order",
                 routeTemplate: "api/order/{orderNo}",
-                defaults: new { orderNo = RouteParameter.Optional },
+                defaults: new { controller = "Order", orderNo = RouteParameter.Optional },
                 constraints: null,
                 handler: tokenInspector
             );
