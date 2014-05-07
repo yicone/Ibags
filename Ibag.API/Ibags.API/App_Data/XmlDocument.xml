@@ -58,19 +58,6 @@
             <param name="password">客户端MD5后的结果</param>
             <returns></returns>
         </member>
-        <member name="M:Ibags.API.Controllers.NewsController.GetNews">
-            <summary>
-            获取新闻列表
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Ibags.API.Controllers.NewsController.GetNews(System.Int32)">
-            <summary>
-            获取新闻详情
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
         <member name="T:Ibags.API.Areas.HelpPage.InvalidSample">
             <summary>
             This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.
@@ -464,6 +451,17 @@
             For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
             or you can provide the samples for the requests/responses.
             </summary>
+        </member>
+        <member name="T:Ibags.API.Controllers.NewsController">
+            <summary>
+            新闻
+            </summary>
+        </member>
+        <member name="M:Ibags.API.Controllers.NewsController.GetNews">
+            <summary>
+            获取新闻
+            </summary>
+            <returns></returns>
         </member>
     </members>
 </doc>
