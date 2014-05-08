@@ -50,7 +50,7 @@ namespace Ibags.API.Controllers
         /// <returns></returns>
         public HttpResponseMessage PostAccount(string code, Account account)
         {
-            if (ModelState.IsValid && ValidatingHelper.Validate(account.MobileNo, ValidationEntrance.Register, code))
+            if (ModelState.IsValid && ValidatingHelper.Validate(account.MobileNo, ValidationEntrance.Registration, code))
             {
                 db.AccountSet.Add(account);
                 db.SaveChanges();

@@ -7,6 +7,6 @@ namespace Ibags.API.Models
 {
     public enum ValidationEntrance
     {
-        Register
+        Registration
     }
 }

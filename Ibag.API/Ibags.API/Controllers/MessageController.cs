@@ -47,9 +47,9 @@ namespace Ibags.API.Controllers
         {
             switch (messageType)
             {
-                case MessageType.Register:
+                case MessageType.Registration:
                     string validationCode = new Random().Next(100000, 999999).ToString();
-                    ValidatingHelper.PutCode(mobileNo, ValidationEntrance.Register, validationCode);
+                    ValidatingHelper.PutCode(mobileNo, ValidationEntrance.Registration, validationCode);
                     return "您注册行李网的登录账号（手机号）所需的验证码为" + validationCode + "，5分钟内有效。";
                 default:
                     throw new ArgumentOutOfRangeException();
