@@ -9,12 +9,12 @@
           <Key>
             <PropertyRef Name="MessageId" />
           </Key>
-          <Property Name="MessageId" Type="int" Nullable="false" />
+          <Property Name="MessageId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Content" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="MobileNo" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="MessageType" Type="int" Nullable="false" />
           <Property Name="RetryCount" Type="int" Nullable="false" />
-          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
           <Property Name="ResultCode" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="ed_news">
@@ -169,12 +169,12 @@
           <Key>
             <PropertyRef Name="MessageId" />
           </Key>
-          <Property Name="MessageId" Type="Int32" Nullable="false" />
+          <Property Name="MessageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Content" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="MobileNo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="MessageType" Type="Int32" Nullable="false" />
           <Property Name="RetryCount" Type="Int32" Nullable="false" />
-          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="ResultCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>

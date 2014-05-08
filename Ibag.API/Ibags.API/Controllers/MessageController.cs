@@ -30,7 +30,7 @@ namespace Ibags.API.Controllers
 
                 db.MessageSet.Add(msg);
                 db.SaveChanges();
-                
+
                 SendMessageAsync(msg);
 
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, message);
@@ -60,18 +60,20 @@ namespace Ibags.API.Controllers
         {
             string content = message.Content + "【行李网】";
             string uri = string.Format("http://cf.lmobile.cn/submitdata/Service.asmx/g_Submit?sname=dlshbgxx&spwd=Vp1GWFV0&scorpid=&sprdid=1012818&sdst={0}&smsg={1}", message.MobileNo, content);
-            using (var client = new HttpClient())
+
+            Task t = new Task(() =>
             {
-                Task<string> task = client.GetStringAsync(uri);
-                task.ContinueWith(a =>
+                using (var client = new HttpClient())
                 {
-                    message.ResultCode = a.Result;
-                    using (IbagsDbContext db = new IbagsDbContext())
-                    {
-                        db.Entry(message).State = EntityState.Modified;
-                    }
-                });
-            }
+                    message.ResultCode = client.GetStringAsync(uri).Result;
+                }
+                using (IbagsDbContext db = new IbagsDbContext())
+                {
+                    db.Entry(message).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            });
+            t.Start();
         }
 
         protected override void Dispose(bool disposing)

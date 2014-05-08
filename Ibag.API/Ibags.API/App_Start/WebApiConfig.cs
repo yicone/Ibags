@@ -35,8 +35,15 @@ namespace Ibags.API
             config.Routes.MapHttpRoute(
                 name: "Registration",
                 routeTemplate: "api/account/{code}",
-                defaults: new { controller = "Account", id = RouteParameter.Optional },
+                defaults: new { controller = "Account" },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post), code = @"\d{6}" }
+            );
+            // 发送注册短信不需要token
+            config.Routes.MapHttpRoute(
+                name: "PostRegisterMessage",
+                routeTemplate: "api/message/",
+                defaults: new { controller = "Message" },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
             );
 
 

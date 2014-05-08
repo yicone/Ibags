@@ -12,7 +12,7 @@ namespace Ibags.API.App_Start
         public static void PutCode(string mobileNo, ValidationEntrance entrance, string code)
         {
             string key = entrance.ToString() + mobileNo;
-            HttpRuntime.Cache.Insert(key, code, null, DateTime.Now.AddSeconds(60), Cache.NoSlidingExpiration);
+            HttpRuntime.Cache.Insert(key, code, null, DateTime.Now.AddMinutes(5), Cache.NoSlidingExpiration);
         }
 
         public static bool Validate(string mobileNo, ValidationEntrance entrance, string code)
