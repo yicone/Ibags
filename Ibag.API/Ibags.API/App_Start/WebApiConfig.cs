@@ -22,38 +22,22 @@ namespace Ibags.API
             config.Routes.MapHttpRoute(
                name: "News",
                routeTemplate: "api/news/{id}",
-               defaults: new { controller = "News", id = RouteParameter.Optional },   // !note: defaults如果不设controller, 会导致该路由规则失效
-               constraints: new { controller = "News", httpMethod = new HttpMethodConstraint(HttpMethod.Post) } // !note: constraints如果不设controller, 会导致HelpPage不可见
+               defaults: new { controller = "News", id = RouteParameter.Optional }//,   // !note: defaults如果不设controller, 会导致该路由规则失效
+                //constraints: new { controller = "News" } // !note: constraints如果不设controller, 会导致HelpPage不可见
            );
 
             config.Routes.MapHttpRoute(
                 name: "Token",
                 routeTemplate: "api/token/{mobileNo}/{password}",
-                defaults: new { controller = "Token" },
-                constraints: new { controller = "Token" }
+                defaults: new { controller = "Token" }
             );
             // 注册帐号不需要token
-            //config.Routes.MapHttpRoute(
-            //    name: "Account",
-            //    routeTemplate: "api/account/{id}",
-            //    defaults: new { controller = "Account", id = RouteParameter.Optional }
-            //);
-
             config.Routes.MapHttpRoute(
                 name: "Registration",
-                routeTemplate: "api/account/{id}",
-                defaults: new { id = RouteParameter.Optional },
-                constraints: new { controller = "Account", action = "PostAccount" }
+                routeTemplate: "api/account/{code}",
+                defaults: new { controller = "Account", id = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post), code = @"\d{6}" }
             );
-
-
-            //config.Routes.MapHttpRoute(
-            //    name: "Order",
-            //    routeTemplate: "api/order/{orderNo}",
-            //    defaults: new { controller = "Order", orderNo = RouteParameter.Optional },
-            //    constraints: null,
-            //    handler: tokenInspector
-            //);
 
 
             config.Routes.MapHttpRoute(

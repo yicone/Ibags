@@ -32,11 +32,11 @@ namespace Ibags.API.Controllers
         /// <summary>
         /// 获取订单详情
         /// </summary>
-        /// <param name="orderNo">eg. XLGJ000001</param>
+        /// <param name="id">eg. XLGJ000001</param>
         /// <returns></returns>
-        public Order GetOrder(string orderNo)
+        public Order GetOrder(string id)
         {
-            Order order = db.OrderSet.SingleOrDefault(o => o.OrderNo == orderNo);
+            Order order = db.OrderSet.SingleOrDefault(o => o.OrderNo == id);
             if (order == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
@@ -52,9 +52,9 @@ namespace Ibags.API.Controllers
         /// <param name="id"></param>
         /// <param name="order"></param>
         /// <returns></returns>
-        public HttpResponseMessage PutOrder(string orderNo, Order order)
+        public HttpResponseMessage PutOrder(string id, Order order)
         {
-            if (ModelState.IsValid && orderNo == order.OrderNo)
+            if (ModelState.IsValid && id == order.OrderNo)
             {
                 db.Entry(order).State = EntityState.Modified;
 

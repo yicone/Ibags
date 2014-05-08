@@ -48,7 +48,7 @@ namespace Ibags.API.Controllers
         /// </summary>
         /// <param name="account"></param>
         /// <returns></returns>
-        public HttpResponseMessage PostAccount(Account account)
+        public HttpResponseMessage PostAccount(string code, Account account)
         {
             if (ModelState.IsValid)
             {

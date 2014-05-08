@@ -4,6 +4,73 @@
         <name>Ibags.API</name>
     </assembly>
     <members>
+        <member name="M:Ibags.API.Controllers.TokenController.GetToken(System.String,System.String)">
+            <summary>
+            get an access token
+            </summary>
+            <param name="mobileNo"></param>
+            <param name="password">客户端MD5后的结果</param>
+            <returns></returns>
+        </member>
+        <member name="T:Ibags.API.Controllers.NewsController">
+            <summary>
+            新闻
+            </summary>
+        </member>
+        <member name="M:Ibags.API.Controllers.NewsController.GetNews">
+            <summary>
+            获取新闻
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ibags.API.Controllers.AccountController.GetAccount">
+            <summary>
+            获取帐号信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ibags.API.Controllers.AccountController.PostAccount(System.String,Ibags.API.Account)">
+            <summary>
+            注册帐号
+            </summary>
+            <param name="account"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ibags.API.Controllers.AccountController.PutAccount(Ibags.API.Account)">
+            <summary>
+            修改帐号信息
+            </summary>
+            <param name="account"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ibags.API.Controllers.OrderController.GetOrders">
+            <summary>
+            获取订单列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ibags.API.Controllers.OrderController.GetOrder(System.String)">
+            <summary>
+            获取订单详情
+            </summary>
+            <param name="id">eg. XLGJ000001</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ibags.API.Controllers.OrderController.PutOrder(System.String,Ibags.API.Order)">
+            <summary>
+            修改订单
+            </summary>
+            <param name="id"></param>
+            <param name="order"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ibags.API.Controllers.OrderController.PostOrder(Ibags.API.Order)">
+            <summary>
+            新建订单
+            </summary>
+            <param name="order"></param>
+            <returns></returns>
+        </member>
         <member name="T:Ibags.API.Areas.HelpPage.TextSample">
             <summary>
             This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
@@ -49,14 +116,6 @@
             <summary>
             Gets the error messages associated with this model.
             </summary>
-        </member>
-        <member name="M:Ibags.API.Controllers.TokenController.GetToken(System.String,System.String)">
-            <summary>
-            get an access token
-            </summary>
-            <param name="mobileNo"></param>
-            <param name="password">客户端MD5后的结果</param>
-            <returns></returns>
         </member>
         <member name="T:Ibags.API.Areas.HelpPage.InvalidSample">
             <summary>
@@ -385,26 +444,6 @@
             <param name="type">The type.</param>
             <returns>An object of the given type.</returns>
         </member>
-        <member name="M:Ibags.API.Controllers.AccountController.GetAccount">
-            <summary>
-            获取帐号信息
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Ibags.API.Controllers.AccountController.PostAccount(Ibags.API.Account)">
-            <summary>
-            注册帐号
-            </summary>
-            <param name="account"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ibags.API.Controllers.AccountController.PutAccount(Ibags.API.Account)">
-            <summary>
-            修改帐号信息
-            </summary>
-            <param name="account"></param>
-            <returns></returns>
-        </member>
         <member name="T:Ibags.API.Areas.HelpPage.Controllers.HelpController">
             <summary>
             The controller that will handle requests for the help page.
@@ -417,51 +456,12 @@
             <param name="description">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
             <returns>The ID as a string.</returns>
         </member>
-        <member name="M:Ibags.API.Controllers.OrderController.GetOrders">
-            <summary>
-            获取订单列表
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Ibags.API.Controllers.OrderController.GetOrder(System.String)">
-            <summary>
-            获取订单详情
-            </summary>
-            <param name="orderNo">eg. XLGJ000001</param>
-            <returns></returns>
-        </member>
-        <member name="M:Ibags.API.Controllers.OrderController.PutOrder(System.String,Ibags.API.Order)">
-            <summary>
-            修改订单
-            </summary>
-            <param name="id"></param>
-            <param name="order"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Ibags.API.Controllers.OrderController.PostOrder(Ibags.API.Order)">
-            <summary>
-            新建订单
-            </summary>
-            <param name="order"></param>
-            <returns></returns>
-        </member>
         <member name="T:Ibags.API.Areas.HelpPage.HelpPageConfig">
             <summary>
             Use this class to customize the Help Page.
             For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
             or you can provide the samples for the requests/responses.
             </summary>
-        </member>
-        <member name="T:Ibags.API.Controllers.NewsController">
-            <summary>
-            新闻
-            </summary>
-        </member>
-        <member name="M:Ibags.API.Controllers.NewsController.GetNews">
-            <summary>
-            获取新闻
-            </summary>
-            <returns></returns>
         </member>
     </members>
 </doc>
