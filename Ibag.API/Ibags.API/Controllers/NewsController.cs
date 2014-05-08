@@ -24,7 +24,6 @@ namespace Ibags.API.Controllers
         /// 获取新闻
         /// </summary>
         /// <returns></returns>
-        [ApiExplorerSettings()]
         public IEnumerable<News> GetNews()
         {
             return db.NewsSet.AsEnumerable();
@@ -43,6 +42,7 @@ namespace Ibags.API.Controllers
         }
 
         // PUT api/News/5
+        [NonAction]
         public HttpResponseMessage PutNews(int id, News news)
         {
             if (ModelState.IsValid && id == news.NewsId)
@@ -67,6 +67,7 @@ namespace Ibags.API.Controllers
         }
 
         // POST api/News
+        [NonAction]
         public HttpResponseMessage PostNews(News news)
         {
             if (ModelState.IsValid)
@@ -85,6 +86,7 @@ namespace Ibags.API.Controllers
         }
 
         // DELETE api/News/5
+        [NonAction]
         public HttpResponseMessage DeleteNews(int id)
         {
             News news = db.NewsSet.Find(id);

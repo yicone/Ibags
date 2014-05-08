@@ -50,7 +50,7 @@ namespace Ibags.API.Controllers
         /// <returns></returns>
         public HttpResponseMessage PostAccount(string code, Account account)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && ValidatingHelper.Validate(account.MobileNo, ValidationEntrance.Register, code))
             {
                 db.AccountSet.Add(account);
                 db.SaveChanges();
@@ -101,6 +101,7 @@ namespace Ibags.API.Controllers
 
         // DELETE api/Account/5
         [ApiExplorerSettings(IgnoreApi = true)]
+        [NonAction]
         public HttpResponseMessage DeleteAccount(int id)
         {
             Account account = db.AccountSet.Find(id);

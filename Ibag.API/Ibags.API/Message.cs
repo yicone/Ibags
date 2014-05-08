@@ -12,14 +12,14 @@ namespace Ibags.API
     using System;
     using System.Collections.Generic;
     
-    public partial class News
+    public partial class Message
     {
-        public int NewsId { get; set; }
-        public Nullable<int> CategoryId { get; set; }
-        public Nullable<int> Order { get; set; }
-        public string Title { get; set; }
-        public string Intro { get; set; }
+        public int MessageId { get; set; }
         public string Content { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
+        public string MobileNo { get; set; }
+        public int MessageType { get; set; }
+        public int RetryCount { get; set; }
+        public System.DateTime CreateDate { get; set; }
+        public string ResultCode { get; set; }
     }
 }

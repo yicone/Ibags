@@ -115,6 +115,7 @@ namespace Ibags.API.Controllers
 
         // DELETE api/Order/5
         [ApiExplorerSettings(IgnoreApi = true)]
+        [NonAction]
         public HttpResponseMessage DeleteOrder(string orderNo)
         {
             Order order = db.OrderSet.SingleOrDefault(o => o.OrderNo == orderNo);
