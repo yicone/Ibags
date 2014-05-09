@@ -216,3 +216,4 @@ pip-log.txt
 
 #nuget
 packages/
+Ibag.API/Ibags.API/App_Data/XmlDocument.xml

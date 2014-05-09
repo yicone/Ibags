@@ -30,6 +30,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>App_Data\XmlDocument.xml</DocumentationFile>
+    <PackageAsSingleFile>true</PackageAsSingleFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -130,7 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs">
-      <DependentUpon>IbagsModel.tt</DependentUpon>
+      <DependentUpon>IbagsDb.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\CryptographyHelper.cs" />
@@ -168,33 +169,33 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="IbagsDb.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IbagsDb.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IbagsDb.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IbagsDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="IbagsDb.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>IbagsDb.edmx</DependentUpon>
     </Compile>
-    <Compile Include="IbagsModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>IbagsModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="IbagsModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>IbagsModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Message.cs">
-      <DependentUpon>IbagsModel.tt</DependentUpon>
+      <DependentUpon>IbagsDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Models\MessageType.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\ValidationEntrance.cs" />
     <Compile Include="News.cs">
-      <DependentUpon>IbagsModel.tt</DependentUpon>
+      <DependentUpon>IbagsDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Order.cs">
-      <DependentUpon>IbagsModel.tt</DependentUpon>
+      <DependentUpon>IbagsDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -303,7 +304,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
@@ -330,14 +330,16 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
-    <None Include="IbagsModel.Context.tt">
+    <Content Include="IbagsDb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>IbagsModel.Context.cs</LastGenOutput>
-    </None>
-    <None Include="IbagsModel.tt">
+      <LastGenOutput>IbagsDb.Context.cs</LastGenOutput>
+      <DependentUpon>IbagsDb.edmx</DependentUpon>
+    </Content>
+    <Content Include="IbagsDb.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>IbagsModel.cs</LastGenOutput>
-    </None>
+      <LastGenOutput>IbagsDb.cs</LastGenOutput>
+      <DependentUpon>IbagsDb.edmx</DependentUpon>
+    </Content>
     <Content Include="log4net.config" />
   </ItemGroup>
   <PropertyGroup>
@@ -354,7 +356,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>4059</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
