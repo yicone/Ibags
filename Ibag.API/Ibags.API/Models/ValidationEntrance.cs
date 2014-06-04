@@ -7,6 +7,7 @@ namespace Ibags.API.Models
 {
     public enum ValidationEntrance
     {
-        Registration
+        Registration,
+        Order
     }
 }

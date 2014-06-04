@@ -50,11 +50,13 @@ namespace Ibags.API.Controllers
         /// <returns></returns>
         public HttpResponseMessage PostAccount(string code, Account account)
         {
-            if (ModelState.IsValid && ValidatingHelper.Validate(account.MobileNo, ValidationEntrance.Registration, code))
+            if (ModelState.IsValid 
+                && ValidatingHelper.Validate(account.MobileNo, ValidationEntrance.Registration, code)
+                && !db.AccountSet.Any(a => a.MobileNo == account.MobileNo))
             {
                 db.AccountSet.Add(account);
                 db.SaveChanges();
-                // 无奈
+                // follow the rule of order number from old website's
                 account.AccountId = "XLGJ" + account.rowId.ToString().PadLeft(6, '0');
                 db.Entry(account).State = EntityState.Modified;
                 db.SaveChanges();

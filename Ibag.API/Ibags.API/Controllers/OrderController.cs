@@ -101,7 +101,16 @@ namespace Ibags.API.Controllers
             }
             else
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
+                var errors = new List<string>();
+                foreach (var state in ModelState)
+                {
+                    foreach (var error in state.Value.Errors)
+                    {
+                        errors.Add(error.ErrorMessage);
+                    }
+                }
+
+                return Request.CreateResponse(HttpStatusCode.BadRequest, errors);
             }
         }
 
