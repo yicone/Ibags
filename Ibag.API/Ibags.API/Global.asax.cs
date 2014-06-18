@@ -26,7 +26,6 @@ namespace Ibags.API
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             Logger.Instance().Info("Application_Start");
-            Logger.Instance().Error("logger test");
         }
     }
 }

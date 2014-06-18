@@ -85,11 +85,8 @@ namespace Ibags.API.Controllers
         {
             if (ModelState.IsValid)
             {
-                // validate accountId
-                if (order.AccountId != TokenInspector.GetToken(Request).AccountId)
-                {
-                    return Request.CreateResponse(HttpStatusCode.BadRequest);
-                }
+                // auto assign accountId
+                order.AccountId = TokenInspector.GetToken(Request).AccountId;
 
                 order.OrderNo = MakeOrderNo();
                 db.OrderSet.Add(order);
